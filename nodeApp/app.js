@@ -63,8 +63,16 @@ Dummy.sync({
 // read
 app.get('/dummies', function (req, res) {
     Dummy.findAll().then(dummies => {
-        console.log(dummies)
-        res.send(dummies)
+        res.send({success:true,data:dummies})
+    })
+
+});
+
+// read one
+app.get('/dummies/:id', function (req, res) {
+    const id = req.param('id');
+    Dummy.findByPk(id).then(dummy => {
+        res.send({success:true,data:dummy})
     })
 
 });
