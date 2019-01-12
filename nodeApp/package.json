@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/HusseinOsman/angular-io#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "sequelize": "^4.42.0",
     "sqlite3": "^4.0.6"

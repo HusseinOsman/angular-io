@@ -2,6 +2,12 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({
+    extended: true
+})); // support encoded bodies
+
 app.get('/', function (req, res) {
     res.send('Hello World!')
 })
@@ -61,16 +67,15 @@ app.get('/dummies', function (req, res) {
         res.send(dummies)
     })
 
-
-})
+});
 
 // Create 
 app.post('/dummies', function (req, res) {
-
-    Dummy.create({
-        name: 'dummi 1',
-        active: true
-    }).then(() => res.send('dummy created'));
+    const body = req.body;
+    Dummy.create(body).then((created) => res.send({
+        success: true,
+        data: created
+    }));
 })
 
 // update

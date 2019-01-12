@@ -7,7 +7,7 @@ curl -X POST \
   http://localhost:3000/dummies \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
-  -d '{}'
+  -d '{"name": "dummy 2","active": true}'
 
 curl -X PUT \
   http://localhost:3000/dummies/1 \
