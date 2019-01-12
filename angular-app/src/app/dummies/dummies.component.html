@@ -1,0 +1,26 @@
+<h3>Dummies</h3>
+<div>
+  <label>Dummy name:
+    <input #dummyName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(dummyName.value); dummyName.value=''">
+    add
+  </button>
+  <button (click)="search(dummyName.value)">
+    search
+  </button>
+</div>
+
+<ul class="dummies">
+  <li *ngFor="let dummy of dummies">
+    <a (click)="edit(dummy)">
+      <span class="badge">{{ dummy.id || -1 }}</span>
+      <span *ngIf="dummy!==editDummy">{{dummy.name}}</span>
+      <input *ngIf="dummy===editDummy" [(ngModel)]="dummy.name"
+        (blur)="update()" (keyup.enter)="update()">
+    </a>
+    <button class="delete" title="delete dummy"
+    (click)="delete(dummy)">x</button>
+  </li>
+</ul>
