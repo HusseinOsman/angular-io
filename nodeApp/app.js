@@ -63,7 +63,10 @@ Dummy.sync({
 // read
 app.get('/dummies', function (req, res) {
     Dummy.findAll().then(dummies => {
-        res.send({success:true,data:dummies})
+        res.send({
+            success: true,
+            data: dummies
+        })
     })
 
 });
@@ -72,7 +75,10 @@ app.get('/dummies', function (req, res) {
 app.get('/dummies/:id', function (req, res) {
     const id = req.param('id');
     Dummy.findByPk(id).then(dummy => {
-        res.send({success:true,data:dummy})
+        res.send({
+            success: true,
+            data: dummy
+        })
     })
 
 });
@@ -114,8 +120,24 @@ app.put('/dummies/:id', function (req, res) {
 
 // delete
 app.delete('/dummies/:id', function (req, res) {
-    req.body
-    res.send('dummy deleted')
+    const id = req.param('id');
+    Dummy.destroy({
+            where: {
+                id: id
+            }
+        })
+        .then(result =>
+            res.send({
+                success: true,
+                data: result
+            })
+        )
+        .error(err =>
+            res.send({
+                success: false,
+                err: err
+            })
+        )
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
