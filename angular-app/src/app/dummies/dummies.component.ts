@@ -6,7 +6,7 @@ import { DummiesService } from './dummies.service';
 @Component({
   selector: 'app-dummies',
   templateUrl: './dummies.component.html',
-  providers: [ DummiesService ],
+  providers: [DummiesService],
   styleUrls: ['./dummies.component.css']
 })
 export class DummiesComponent implements OnInit {
@@ -21,7 +21,7 @@ export class DummiesComponent implements OnInit {
 
   getDummies(): void {
     this.dummiesService.getDummies()
-      .subscribe(dummies => this.dummies = dummies);
+      .subscribe(dummies => { console.log("dummies",dummies["data"]);this.dummies = dummies["data"]; });
   }
 
   add(name: string): void {

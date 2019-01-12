@@ -8,7 +8,16 @@ app.use(bodyParser.urlencoded({
     extended: true
 })); // support encoded bodies
 
-app.get('/', function (req, res) {
+const cors = require('cors')
+
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions))
+
+app.get('/', function (req, res, next) {
     res.send('Hello World!')
 })
 
@@ -61,7 +70,7 @@ Dummy.sync({
 
 
 // read
-app.get('/dummies', function (req, res) {
+app.get('/dummies', function (req, res, next) {
     Dummy.findAll().then(dummies => {
         res.send({
             success: true,
@@ -72,7 +81,7 @@ app.get('/dummies', function (req, res) {
 });
 
 // read one
-app.get('/dummies/:id', function (req, res) {
+app.get('/dummies/:id', function (req, res, next) {
     const id = req.param('id');
     Dummy.findByPk(id).then(dummy => {
         res.send({
@@ -84,7 +93,7 @@ app.get('/dummies/:id', function (req, res) {
 });
 
 // Create 
-app.post('/dummies', function (req, res) {
+app.post('/dummies', function (req, res, next) {
     const body = req.body;
     Dummy.create(body).then((created) => res.send({
         success: true,
@@ -93,7 +102,7 @@ app.post('/dummies', function (req, res) {
 })
 
 // update
-app.put('/dummies/:id', function (req, res) {
+app.put('/dummies/:id', function (req, res, next) {
     const body = req.body;
     const id = req.param('id');
 
@@ -119,7 +128,7 @@ app.put('/dummies/:id', function (req, res) {
 })
 
 // delete
-app.delete('/dummies/:id', function (req, res) {
+app.delete('/dummies/:id', function (req, res, next) {
     const id = req.param('id');
     Dummy.destroy({
             where: {
