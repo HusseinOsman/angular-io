@@ -2,7 +2,7 @@
   "name": "server-app",
   "version": "1.0.0",
   "description": "expressjs",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/HusseinOsman/angular-io#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "sequelize": "^4.42.0",
+    "sqlite3": "^4.0.6"
   }
 }
