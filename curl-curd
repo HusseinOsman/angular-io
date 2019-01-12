@@ -13,7 +13,7 @@ curl -X PUT \
   http://localhost:3000/dummies/1 \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
-  -d '{}'
+  -d '{"name": "dummy updated","active": false}'
 
 curl -X DELETE \
   http://localhost:3000/dummies/1 \

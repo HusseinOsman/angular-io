@@ -80,7 +80,28 @@ app.post('/dummies', function (req, res) {
 
 // update
 app.put('/dummies/:id', function (req, res) {
-    res.send('dummy updated')
+    const body = req.body;
+    const id = req.param('id');
+
+    console.log("id,body", id, body);
+
+    Dummy.update(body, {
+            where: {
+                id: id
+            }
+        })
+        .then(result =>
+            res.send({
+                success: true,
+                data: result
+            })
+        )
+        .error(err =>
+            res.send({
+                success: false,
+                err: err
+            })
+        )
 })
 
 // delete
